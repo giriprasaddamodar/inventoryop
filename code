@@ -1,0 +1,65 @@
+Basic Projects for Data Analyst Roles
+1. Data Analyst - Operations, Supply Chain Management, and Logistics
+Project: Inventory Optimization
+
+Objective: Optimize inventory levels to reduce holding costs while ensuring product availability.
+
+Steps:
+
+Data Collection:
+
+Collect historical sales data, lead times, and current inventory levels from the company's ERP system using SQL.
+Gather supplier performance data.
+sql
+Copy code
+SELECT product_id, sales_date, quantity_sold
+FROM sales_data
+WHERE sales_date BETWEEN '2023-01-01' AND '2023-12-31';
+Data Cleaning and Analysis:
+
+Use Python (Pandas) to clean and preprocess the data.
+Calculate demand forecasts using statistical methods or time series analysis.
+python
+Copy code
+import pandas as pd
+from statsmodels.tsa.holtwinters import ExponentialSmoothing
+
+df = pd.read_sql(query, engine)
+df['sales_date'] = pd.to_datetime(df['sales_date'])
+df.set_index('sales_date', inplace=True)
+
+model = ExponentialSmoothing(df['quantity_sold'], seasonal='add', seasonal_periods=12)
+fit_model = model.fit()
+forecast = fit_model.forecast(12)
+Visualization:
+
+Use Power BI or Tableau to create a dashboard showing current inventory levels, forecasted demand, and recommended reorder points.
+Project: Transportation Cost Analysis
+
+Objective: Analyze and reduce transportation costs while maintaining delivery performance.
+
+Steps:
+
+Data Collection:
+
+Extract transportation and delivery data, including costs, routes, and delivery times from the logistics database using SQL.
+sql
+Copy code
+SELECT delivery_id, route, cost, delivery_time
+FROM transportation_data
+WHERE delivery_date BETWEEN '2023-01-01' AND '2023-12-31';
+Data Cleaning and Analysis:
+
+Clean and preprocess the data using Python.
+Analyze cost per route and delivery performance.
+python
+Copy code
+import pandas as pd
+
+df = pd.read_sql(query, engine)
+df['delivery_date'] = pd.to_datetime(df['delivery_date'])
+route_costs = df.groupby('route')['cost'].mean()
+delivery_times = df.groupby('route')['delivery_time'].mean()
+Visualization:
+
+Create visualizations in Power BI or Tableau to compare costs and delivery performance across different routes.
